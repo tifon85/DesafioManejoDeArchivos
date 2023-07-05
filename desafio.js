@@ -5,6 +5,7 @@ class ProductManager{
         this.path=ruta
     }
 
+    //OK
     addProduct = async (title, description, price, thumbnail, code, stock) => {
         //VALIDACIONES
 		if (
@@ -35,6 +36,7 @@ class ProductManager{
                 }else{
                     producto.id=productos[productos.length-1].id + 1
                 }
+                productos.push(producto)
                 await fs.promises.writeFile(this.path, JSON.stringify(productos, '\t'), 'utf-8')
                 return 'El producto ya fue agregado'
             }else{
@@ -45,6 +47,7 @@ class ProductManager{
         }
     }
 
+    //OK
     getProducts = async () => {
         try{
             if(!fs.existsSync(this.path)){
@@ -106,9 +109,9 @@ class ProductManager{
 }
 
 const products = new ProductManager('./Productos.json')
-//console.log(products.addProduct('asd', 'dsa', '14.23', 'ert', 'qwa', 12))
-//console.log(products.addProduct('asd', 'dsa', '14.23', 'ert', 'qwi', 12))
-//console.log(products.getProducts())
-//console.log(products.getProductById(3))
-//console.log(products.updateProduct(2, {title: 'asd2', description: 'dsa2', price: '14.43', thumbnail: 'ert2', code: 'qwa2', stock: 24} ))
-//console.log(products.deleteProduct(2))
+//products.addProduct('asd', 'dsa', '14.23', 'ert', 'qwa', 12).then(resp => console.log(resp))
+//products.addProduct('asd', 'dsa', '14.23', 'ert', 'qwi', 12).then(resp => console.log(resp))
+//products.getProducts().then(resp => console.log(resp))
+//products.getProductById(2).then(resp => console.log(resp))
+//products.updateProduct(2, {title: 'asd2', description: 'dsa2', price: '14.43', thumbnail: 'ert2', code: 'qwa2', stock: 24} ).then(resp => console.log(resp))
+//products.deleteProduct(2).then(resp => console.log(resp))
